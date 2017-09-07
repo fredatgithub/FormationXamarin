@@ -1,0 +1,50 @@
+ <Grid x:Name="rootGrid">
+    <Grid.RowDefinitions>
+      <!-- Entête -->
+      <RowDefinition Height="Auto" />
+      <!-- Nombre -->
+      <RowDefinition Height="Auto" />
+      <!-- Exposant -->
+      <RowDefinition Height="Auto" />
+      <!-- Bouton -->
+      <RowDefinition Height="Auto" />
+      <!-- Résultat -->
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition />
+      <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+    <!-- Entête -->
+    <StackLayout Grid.Column="0"
+                 Grid.Row="0"
+                 Grid.ColumnSpan="2"
+                 HorizontalOptions="Center"
+                 Padding="20"
+                 Orientation="Horizontal">
+      <Image Source="connery.gif" />
+      <Label Text="Algo Math" HorizontalOptions="End" />
+
+    </StackLayout>
+    <!-- Nombre -->
+    <Label Grid.Column="0" Grid.Row="1" Text="Nombre" />
+    <Entry Grid.Column="1" Grid.Row="1"
+           Focused="TxtNum_OnFocused"
+           Placeholder="nombre" x:Name="txtNum" Text="2" />
+    <!-- Exposant -->
+    <Label Grid.Column="0" Grid.Row="2" Text="Exposant" />
+    <Entry Grid.Column="1" Grid.Row="2"
+           Focused="TxtNum_OnFocused"
+           Placeholder="exposant" x:Name="txtExp" Text="3" />
+    <!-- Bouton -->
+    <Button BackgroundColor="#2196f3" BorderColor="Black"
+        Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"
+        x:Name="btnExpose" Text="Expose XF" Clicked="BtnExpose_OnClicked" />
+    <!-- Résultat -->
+    <!--<EntryCell Label="Résultat" x:Name="lblResult" 
+                    Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" />-->
+    <Label
+        IsVisible="False"
+        Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
+        x:Name="lblResult" Text="res" Font="22"/>
+  </Grid>

@@ -1,0 +1,26 @@
+ public Page1()
+        {
+            InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
+            lblTime.Text = DateTime.Now.ToLocalTime().ToString();
+            //Timer
+            List<Byte[]> liste = new List<byte[]>();
+            //no callback
+            //liste.Add(new byte[1024 * 100]);
+            //ShowMemoryAllocation();
+            Device.StartTimer(new TimeSpan(0, 0, 2), () =>
+              {
+                  liste.Add(new byte[1024 * 10]);
+                  ShowMemoryAllocation();
+                  return true;
+              });
+
+
+        }
+
+private void ShowMemoryAllocation()
+        {
+            //Nombre correspondant à la meilleure approximation possible du nombre d'octets
+            //actuellement alloués dans la mémoire managée.
+            lblMemory.Text = string.Format($"Mémoire allouée {GC.GetTotalMemory(true).ToString()}");
+        }

@@ -1,0 +1,30 @@
+Dans C:\Program Files (x86)\MSBuild\Xamarin\iOS\Xamarin.iOS.Common.After.targets
+
+- ligne 73:
+
+Remplacer :
+<_ReferencedDlls Include="@(AllBuiltProjectOutputs);" />
+<_Assemblies Include="@(MainAssembly);@(_ReferencedDlls)" />
+
+Par :
+<_Assemblies Include="@(AllBuiltProjectOutputs)" />
+
+
+Et
+
+
+- ligne 85:
+
+Remplacer :
+<MTouchReferencePath Include="@(_Assemblies)" />
+
+Par :
+<!-- Don't append as an MTouchReferencePath the primary assembly itself since that's already passed as MainAssembly="$(TargetPath)" -->
+<MTouchReferencePath Include="@(_Assemblies)" Condition="'%(_Assemblies.IsKeyOutput)' != 'true'" />
+
+
+================================================
+
+
+Si ça ne marche toujours pas :
+http://bartwullems.blogspot.fr/2015/05/xamarinforms-no-valid-ios-code-signing.html

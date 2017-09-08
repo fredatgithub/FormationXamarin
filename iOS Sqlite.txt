@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+
+using Foundation;
+using UIKit;
+//
+using Xamarin.Forms;
+using SQLiteXTraining.Service;
+using SQLite;
+
+[assembly: Dependency(typeof(SQLiteXTraining.iOS.SQLiteDatabase))]
+
+namespace SQLiteXTraining.iOS
+{
+    public class SQLiteDatabase : IServiceSQLite
+    {
+        public SQLiteConnection GetConnection()
+        {
+
+            string docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            string libFolder = Path.Combine(docFolder, "..", "Library", "Databases");
+
+            if (!Directory.Exists(libFolder))
+            {
+                Directory.CreateDirectory(libFolder);
+            }
+
+            var sqliteFilename = "StagesXTraining.db3";
+            var path = Path.Combine(libFolder, sqliteFilename);
+            // Create the connection
+            var conn = new SQLite.SQLiteConnection(path);
+            // Return the database connection
+            return conn;
+        }
+    }
+}

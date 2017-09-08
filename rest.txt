@@ -1,0 +1,3 @@
+http://services.odata.org/V3/Northwind/Northwind.svc/Customers?$format=json
+
+http://services.odata.org/Northwind/Northwind.svc/Customers('" + customerID + "')/Orders?$format=json
